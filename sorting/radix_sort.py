@@ -28,7 +28,8 @@ def radix_sort(seq):
 
 
 def sort_non_negs(seq):
-    if len(seq) <=1 :
+    len_arr = len(seq)
+    if len_arr <=1 :
         return seq
     else:
         digits = len(str(max(seq)))
@@ -36,6 +37,7 @@ def sort_non_negs(seq):
         for pos in range(digits-1, -1, -1):  # inverted order, low eight bit first.
             rlt = []
             for bit in range(10):  # radix is 10
+                if len(rlt) == len_arr: break
                 for num in seq: 
                     if int(num[pos]) == bit:
                         rlt.append(num)
@@ -61,7 +63,8 @@ def radix_sort_improvement(seq):
 
 
 def sort_non_negs_float(seq):
-    if len(seq) <=1 :
+    len_arr = len(seq)
+    if len_arr <=1 :
         return seq
     else:
         seq = [str(i).split('.') for i in seq]
@@ -73,6 +76,7 @@ def sort_non_negs_float(seq):
         for pos in range(digits_left + digits_right, digits_left, -1) + range(digits_left-1, -1, -1):  
             rlt = []
             for bit in range(10): 
+                if len(rlt) == len_arr: break
                 for num in seq:
                     if int(num[pos]) == bit:
                         rlt.append(num)
